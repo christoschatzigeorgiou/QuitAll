@@ -6,10 +6,13 @@ swift build -c release
 APP=build/QuitAll.app
 rm -rf "$APP"; mkdir -p "$APP/Contents/MacOS"
 cp .build/release/QuitAll "$APP/Contents/MacOS/"
+mkdir -p "$APP/Contents/Resources"
+swift make-icon.swift "$APP/Contents/Resources/AppIcon.icns"
 cat > "$APP/Contents/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
+<key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundleName</key><string>QuitAll</string>
 <key>CFBundleIdentifier</key><string>local.quitall</string>
 <key>CFBundleExecutable</key><string>QuitAll</string>
